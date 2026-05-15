@@ -128,28 +128,24 @@
 
 > Three bullets.
 
-- **What is tracked:** _Your answer here._
-- **When it is used:** _Your answer here._
-- **What it allows the algorithm to skip:** _Your answer here._
+- **What is tracked:** The algorithm stores the cheapest complete valid route found so far and the relic order that achieved it.
+- **When it is used:** It is checked before exploring a partial route any further.
+- **What it allows the algorithm to skip:** If a partial route is already no better than the best complete solution, that branch can be skipped because continuing it cannot improve the answer.
 
 ### Part 6b: Lower Bound Estimation
 
 > Three bullets.
 
-- **What information is available at the current state:** _Your answer here._
-- **What the lower bound accounts for:** _Your answer here._
-- **Why it never overestimates:** _Your answer here._
+- **What information is available at the current state:** At each state, we know the current location, which relics are still unvisited, and the cost accumulated so far.
+- **What the lower bound accounts for:** The bound includes the cost already spent plus a guaranteed remaining cost to visit the remaining relics and eventually reach the exit.
+- **Why it never overestimates:** It only uses costs that any valid completion must pay, so it can be too low but never larger than the true cheapest completion cost.
 
 ### Part 6c: Pruning Correctness
 
-> One to two bullets. Explain why pruning is safe.
-
-- _Your answer here._
+- This pruning is safe because every remaining edge cost is nonnegative, so any completed route from this state must cost at least currCost overall.
 
 ---
 
 ## References
 
-> Bullet list. If none beyond lecture notes, write that.
-
-- _Your references here._
+- None beyond the lecture notes.

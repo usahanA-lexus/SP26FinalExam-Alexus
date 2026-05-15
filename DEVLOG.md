@@ -2,12 +2,6 @@
 
 **Student Name:** Alexus Aguirre Arias
 **Student ID:** 132191303
-
-> Instructions: Write at least four dated entries. Required entry types are marked below.
-> Two to five sentences per entry is sufficient. Write entries as you go, not all in one
-> sitting. Graders check that entries reflect genuine work across multiple sessions.
-> Delete all blockquotes before submitting.
-
 ---
 
 ## Entry 1 - [May 13th 2026]: Initial Plan
@@ -22,33 +16,27 @@ At first I was treating the route search too loosely and had not lined the code 
 
 ---
 
-## Entry 3 - [Date]: [Short description]
+## Entry 3 - [May 14th 2026]: ReadMe part 6 answered and test
 
-_Your entry here._
+After finishing the main route planner, I went back through README.md and torchbearer.py to make sure the written answers still matched the actual variable names and search design used in code. I checked the Part 4, Part 5, and Part 6 wording against the implementation and then ran the provided tests to confirm the full pipeline worked correctly. The tests all passed!
+---
+
+## Entry 4 - [May 14th 2026]: Post-Implementation Reflection
+
+If I had more time then I would improve the pruning so the search could cut off mroe branches earlier isntead of only comapring currCost to the current best route. Currently, its a safe approach but suppose I could try out estimating the minimum remaining cost from the current location through the unvisited relics to the exit. That would let the search stop ealreir on rbanches that are already guaranteed to end worse than the current best route. 
 
 ---
 
-## Entry 4 - [Date]: Post-Implementation Reflection
-
-> Required. Written after your implementation is complete. Describe what you would
-> change or improve given more time.
-
-_Your entry here._
-
----
-
-## Final Entry - [Date]: Time Estimate
-
-> Required. Estimate minutes spent per part. Honesty is expected; accuracy is not graded.
+## Final Entry - [May 14th 2026]: Time Estimate
 
 | Part | Estimated Hours |
 |---|---|
-| Part 1: Problem Analysis | |
-| Part 2: Precomputation Design | |
-| Part 3: Algorithm Correctness | |
-| Part 4: Search Design | |
-| Part 5: State and Search Space | |
-| Part 6: Pruning | |
-| Part 7: Implementation | |
-| README and DEVLOG writing | |
-| **Total** | |
+| Part 1: Problem Analysis |0.5 |
+| Part 2: Precomputation Design |1|
+| Part 3: Algorithm Correctness |0.5|
+| Part 4: Search Design | 1 |
+| Part 5: State and Search Space | 1 |
+| Part 6: Pruning | 0.5 |
+| Part 7: Implementation |2|
+| README and DEVLOG writing |1 |
+| **Total** | 7.5 |
