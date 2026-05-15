@@ -7,9 +7,6 @@
 
 ## Part 1: Problem Analysis
 
-> Document why this problem is not just a shortest-path problem. Three bullet points, one
-> per question. Each bullet should be 1-2 sentences max.
-
 - **Why a single shortest-path run from S is not enough:**
   To calculate the single shortest path run from S isnt enough as it does not decide which relic chamber to visit first.
 
@@ -41,8 +38,6 @@
 | Why O(1) lookup is possible | Python dict hash table lookup is  O(1) average for both key levels. |
 
 ### Part 2c: Precomputation Complexity
-
-> State the total complexity and show the arithmetic. Two to three lines max.
 
 - **Number of Dijkstra runs:** k+1 
 - **Cost per run:** O(m log n)
@@ -105,8 +100,6 @@
 
 ### Part 5b: Data Structure for Visited Relics
 
-> Fill in the table.
-
 | Property | Your answer |
 |---|---|
 | Data structure chosen | 'set' stored in 'relics_remaining'|
@@ -126,15 +119,11 @@
 
 ### Part 6a: Best-So-Far Tracking
 
-> Three bullets.
-
 - **What is tracked:** The algorithm stores the cheapest complete valid route found so far and the relic order that achieved it.
 - **When it is used:** It is checked before exploring a partial route any further.
 - **What it allows the algorithm to skip:** If a partial route is already no better than the best complete solution, that branch can be skipped because continuing it cannot improve the answer.
 
 ### Part 6b: Lower Bound Estimation
-
-> Three bullets.
 
 - **What information is available at the current state:** At each state, we know the current location, which relics are still unvisited, and the cost accumulated so far.
 - **What the lower bound accounts for:** The bound includes the cost already spent plus a guaranteed remaining cost to visit the remaining relics and eventually reach the exit.
