@@ -64,16 +64,16 @@
 ### Part 3b: Why Each Phase Holds
  
 - **Initialization : why the invariant holds before iteration 1:**
-    - At the start S is empty, dist[x]=0 and every other node has distance infinty. This matches the invariant because the source already has the correct distance and no other paths have eebn discovered yet.
+    - At the start S is empty, dist[x]=0 and every other node has distance infinty as no nodes are finalized. This matches the invariant because the source already has the correct distance and no other paths have eebn discovered yet.
 
 - **Maintenance : why finalizing the min-dist node is always correct:**
     - The choosen node has the smallest estimate along all non-finalized nodes. Since edge weights are nonnegative, any other path that reaches that node later cannot become cheaper by going through another non-finalized node first so its current distance must already be correct.
 
 - **Termination : what the invariant guarantees when the algorithm ends:**
-  When the algorithm finishes  then every reachable node has been fianlzide with tis true shrotest path distance from the source and any ndoe at infity is unreachbale.
+  - When the algorithm finishes  then every reachable node has been fianlzide with tis true shrotest path distance from the source and any ndoe at infity is unreachbale.
 
 ### Part 3c: Why This Matters for the Route Planner
-Correct shortest path distancces let the Torchbearer's planner compare route options using true travel costs, so it can make the right routing decisions.
+  - Correct shortest path distances let the Torchbearer's planner compare route options using true travel costs, so it can make the right routing decisions.
 
 ---
 
@@ -81,20 +81,15 @@ Correct shortest path distancces let the Torchbearer's planner compare route opt
 
 ### Why Greedy Fails
 
-> State the failure mode. Then give a concrete counter-example using specific node names
-> or costs (you may use the illustration example from the spec). Three to five bullets.
-
-- **The failure mode:** _Your answer here._
-- **Counter-example setup:** _Your answer here._
-- **What greedy picks:** _Your answer here._
-- **What optimal picks:** _Your answer here._
-- **Why greedy loses:** _Your answer here._
+- **The failure mode:** A greedy rule that always picks the cheapest next relic can make a locally cheap move that leads to a worse total route later.
+- **Counter-example setup:** Using the example distances from 'S' we have "S->B=1', 'S->C=2','S->D=2', and later some moves like 'B->C=100' and 'D->T=100' are very expensive.
+- **What greedy picks:**Greedy [icks 'B' first becaise 'B' is the cheapest relic to reach from 'S'.
+- **What optimal picks:** The best full order is 'S->B->D->C->T' with total cost '4'. while another possible order like 'S->C->B->D->T' costs '5'.
+- **Why greedy loses:**Choosing only by the next cheapest step does not account for the remaining relic order and exit cost, so a choice that looks best now may increase the total later.
 
 ### What the Algorithm Must Explore
 
-> One bullet. Must use the word "order."
-
-- _Your answer here._
+- The algorithm must explore each possible order fo visitng the relic chambers, ebcause the toal fuel cost depends on the full order and not jksut the next step.
 
 ---
 
@@ -102,14 +97,11 @@ Correct shortest path distancces let the Torchbearer's planner compare route opt
 
 ### Part 5a: State Representation
 
-> Document the three components of your search state as a table.
-> Variable names here must match exactly what you use in torchbearer.py.
-
 | Component | Variable name in code | Data type | Description |
 |---|---|---|---|
-| Current location | | | |
-| Relics already collected | | | |
-| Fuel cost so far | | | |
+| Current location | currLoc | node | THe node wher the Torchbearer is currently standing. |
+| Relics already collected | relics_VistedOrder | list[node] | The relics collected so far, in the order they were visited. |
+| Fuel cost so far |currCost | float | The total fuel cost spent so far along the current partial route.|
 
 ### Part 5b: Data Structure for Visited Relics
 
@@ -117,18 +109,16 @@ Correct shortest path distancces let the Torchbearer's planner compare route opt
 
 | Property | Your answer |
 |---|---|
-| Data structure chosen | |
-| Operation: check if relic already collected | Time complexity: |
-| Operation: mark a relic as collected | Time complexity: |
-| Operation: unmark a relic (backtrack) | Time complexity: |
-| Why this structure fits | |
+| Data structure chosen | 'set' stored in 'relics_remaining'|
+| Operation: check if relic already collected | Time complexity: '0(1)' average, by removing it from the set. |
+| Operation: mark a relic as collected | Time complexity: 'O(1)' average, by removing it from the set.|
+| Operation: unmark a relic (backtrack) | Time complexity:'O(1)' average, by adding it back to the set. |
+| Why this structure fits | It supports fast membership updates during recursion and backtracking, which is exactly what the search needs.|
 
 ### Part 5c: Worst-Case Search Space
 
-> Two bullets.
-
-- **Worst-case number of orders considered:** _Your answer (in terms of k)._
-- **Why:** _One-line justification._
+- **Worst-case number of orders considered:** 'k!'
+- **Why:** The algorithm may need to try every possible order of visitng the 'k' relics.
 
 ---
 
