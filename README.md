@@ -1,14 +1,8 @@
 # The Torchbearer
 
-**Student Name:** ___________________________
-**Student ID:** ___________________________
+**Student Name:** Alexus Aguirre Arias
+**Student ID:** 132191303
 **Course:** CS 460 – Algorithms | Spring 2026
-
-> This README is your project documentation. Write it the way a developer would document
-> their design decisions , bullet points, brief justifications, and concrete examples where
-> required. You are not writing an essay. You are explaining what you built and why you built
-> it that way. Delete all blockquotes like this one before submitting.
-
 ---
 
 ## Part 1: Problem Analysis
@@ -17,13 +11,13 @@
 > per question. Each bullet should be 1-2 sentences max.
 
 - **Why a single shortest-path run from S is not enough:**
-  _Your answer here._
+  To calculate the single shortest path run from S isnt enough as it does not decide which relic chamber to visit first.
 
 - **What decision remains after all inter-location costs are known:**
-  _Your answer here._
+  The visit order of the relic chambers before exiting still must be done.
 
 - **Why this requires a search over orders (one sentence):**
-  _Your answer here._
+  The total cost hinges on the order of visting relics, so you must compare multiple possible orders rather than do one shortest path computation.
 
 ---
 
@@ -31,70 +25,55 @@
 
 ### Part 2a: Source Selection
 
-> List the source node types as a bullet list. For each, one-line reason.
-
 | Source Node Type | Why it is a source |
 |---|---|
-| _node type_ | _one-line reason_ |
-| _node type_ | _one-line reason_ |
+| spawn (S) | We need to find shortest costs from the starting point to each possible first relic. |
+| relic chambers (R in M) | We need to know shortest costs between relics and from the last visited relic to the exit. |
 
 ### Part 2b: Distance Storage
 
-> Fill in the table. No prose required.
-
 | Property | Your answer |
 |---|---|
-| Data structure name | |
-| What the keys represent | |
-| What the values represent | |
-| Lookup time complexity | |
-| Why O(1) lookup is possible | |
+| Data structure name | Nested dictionary (dist_table)|
+| What the keys represent | Ouer Key is the source node u, while inner key is desination node v. |
+| What the values represent | dist_table[u][v] represents the minimum fuel cost from u to v. |
+| Lookup time complexity | O(1) |
+| Why O(1) lookup is possible | Python dict hash table lookup is  O(1) average for both key levels. |
 
 ### Part 2c: Precomputation Complexity
 
 > State the total complexity and show the arithmetic. Two to three lines max.
 
-- **Number of Dijkstra runs:** _your answer_
-- **Cost per run:** _your answer_
-- **Total complexity:** _your answer_
-- **Justification (one line):** _your answer_
+- **Number of Dijkstra runs:** k+1 
+- **Cost per run:** O(m log n)
+- **Total complexity:** O((k+1)*mlogn)
+- **Justification (one line):** We run Dijkstra once per selected source and store each run's full distance map.
 
 ---
 
 ## Part 3: Algorithm Correctness
 
-> Document your understanding of why Dijkstra produces correct distances.
-> Bullet points and short sentences throughout. No paragraphs.
-
 ### Part 3a: What the Invariant Means
 
-> Two bullets: one for finalized nodes, one for non-finalized nodes.
-> Do not copy the invariant text from the spec.
-
 - **For nodes already finalized (in S):**
-  _Your answer here._
+  - The nodes already finalized already have their shortest distance from the source, thus once placed in S then it can't find a cheaper path to it.
 
 - **For nodes not yet finalized (not in S):**
-  _Your answer here._
+    -Their current value is the best path found so far using only finalized nodes in the middle of the path, then the estimat emight still decrease later if  a better route is discovered.
 
 ### Part 3b: Why Each Phase Holds
-
-> One to two bullets per phase. Maintenance must mention nonnegative edge weights.
-
+ 
 - **Initialization : why the invariant holds before iteration 1:**
-  _Your answer here._
+    - At the start S is empty, dist[x]=0 and every other node has distance infinty. This matches the invariant because the source already has the correct distance and no other paths have eebn discovered yet.
 
 - **Maintenance : why finalizing the min-dist node is always correct:**
-  _Your answer here._
+    - The choosen node has the smallest estimate along all non-finalized nodes. Since edge weights are nonnegative, any other path that reaches that node later cannot become cheaper by going through another non-finalized node first so its current distance must already be correct.
 
 - **Termination : what the invariant guarantees when the algorithm ends:**
-  _Your answer here._
+  When the algorithm finishes  then every reachable node has been fianlzide with tis true shrotest path distance from the source and any ndoe at infity is unreachbale.
 
 ### Part 3c: Why This Matters for the Route Planner
-
-> One sentence connecting correct distances to correct routing decisions.
-
-_Your answer here._
+Correct shortest path distancces let the Torchbearer's planner compare route options using true travel costs, so it can make the right routing decisions.
 
 ---
 

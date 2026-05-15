@@ -1,7 +1,7 @@
 # Development Log – The Torchbearer
 
-**Student Name:** ___________________________
-**Student ID:** ___________________________
+**Student Name:** Alexus Aguirre Arias
+**Student ID:** 132191303
 
 > Instructions: Write at least four dated entries. Required entry types are marked below.
 > Two to five sentences per entry is sufficient. Write entries as you go, not all in one
@@ -12,10 +12,7 @@
 
 ## Entry 1 – [Date]: Initial Plan
 
-> Required. Write this before writing any code. Describe your plan: what you will
-> implement first, what parts you expect to be difficult, and how you plan to test.
-
-_Your entry here._
+My plan is to read the assignment.md and readme.md over, and identifuing what information needs to be stored so I can first implement that. Then build the main planner on top of that as it depends on correct shortest path values. The hardest parts will most liekly be making sure the algorthim deos not explore unncecessary routes. 
 
 ---
 

@@ -2,8 +2,8 @@
 CS 460 – Algorithms: Final Programming Assignment
 The Torchbearer
 
-Student Name: ___________________________
-Student ID:   ___________________________
+Student Name: Alexus Aguirre Arias
+Student ID:   132191303
 
 INSTRUCTIONS
 ------------
@@ -25,16 +25,14 @@ import heapq
 # =============================================================================
 
 def explain_problem():
-    """
-    Returns
-    -------
-    str
-        Your Part 1 README answers, written as a string.
-        Must match what you wrote in README Part 1.
-
-    TODO
-    """
-    return "TODO"
+    return (
+         "- Why a single shortest-path run from S is not enough: "
+        "A single run from S gives only the cheapest cost from S to each location, but it cannot decide the best relic collection order.\n"
+        "- What decision remains after all inter-location costs are known: "
+        "We still must choose the order to visit all relic chambers and then finish at T.\n"
+        "- Why this requires a search over orders (one sentence): "
+        "The total fuel depends on visit order, we must compare multiple orders rather than do one shortest-path computation."
+    )
 
 
 # =============================================================================
